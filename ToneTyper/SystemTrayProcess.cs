@@ -48,11 +48,12 @@ internal class SystemTrayProcess : ApplicationContext
 
 		_toggleButton.Click += new EventHandler(ToggleLoop);
 		_changeHotkeyButton.Click += new EventHandler(ChangeHotkey);
-
+		_vModeButton.Click += new EventHandler(ToggleVMode);
 		_exitButton.Click += new EventHandler(Exit);
 
 		menuStrip.Items.Add(_toggleButton);
 		menuStrip.Items.Add(_changeHotkeyButton);
+		menuStrip.Items.Add(_vModeButton);
 		menuStrip.Items.Add(_exitButton);
 
 		_trayIcon = new()

@@ -6,7 +6,22 @@
     <Nullable>disable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>tonetyper.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="tonetyper.ico" />
+    <None Remove="tonetyper_suspend.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="tonetyper.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tonetyper_suspend.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="HotkeyListener" Version="1.9.0" />

@@ -40,7 +40,7 @@ internal readonly struct Key
 		_shift = shift;
 	}
 
-	public bool IsStart => !IsNumber && _keyReceived is not PossibleKey.Other and not PossibleKey.Backspace;
+	public bool IsStart => !IsNumber && _keyReceived is not PossibleKey.Other and not PossibleKey.Backspace && !(_keyReceived == PossibleKey.Apostrophe && _shift);
 
 	public bool IsApostrophe => _keyReceived is PossibleKey.Apostrophe && !_shift;
 
@@ -65,6 +65,12 @@ internal readonly struct Key
 			PossibleKey.U => 'u',
 			PossibleKey.V => 'v',
 			PossibleKey.Umlaut => 'ü',
+
+			PossibleKey.One => '1',
+			PossibleKey.Two => '2',
+			PossibleKey.Three => '3',
+			PossibleKey.Four => '4',
+
 			_ => throw new InvalidOperationException($"Cannot convert key {_keyReceived} into a char.")
 		};
 

@@ -65,7 +65,7 @@ internal class Converter
 
 						if (cachedKey.IsApostrophe) // a'3 => a3
 						{
-							_inputSimulator.Keyboard.TextEntry((char)cachedKey);
+							_inputSimulator.Keyboard.TextEntry((char)receivedKey);
 						}
 						else if (cachedKey.IsStart) // a3 => ǎ
 						{

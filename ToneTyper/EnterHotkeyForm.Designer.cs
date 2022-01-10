@@ -35,16 +35,18 @@ partial class EnterHotkeyForm : Form
 			// 
 			// HotkeyTextBox
 			// 
-			this.HotkeyTextBox.Location = new System.Drawing.Point(12, 12);
+			this.HotkeyTextBox.Location = new System.Drawing.Point(17, 20);
+			this.HotkeyTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.HotkeyTextBox.Name = "HotkeyTextBox";
-			this.HotkeyTextBox.Size = new System.Drawing.Size(165, 23);
+			this.HotkeyTextBox.Size = new System.Drawing.Size(234, 31);
 			this.HotkeyTextBox.TabIndex = 0;
 			// 
 			// SubmitButton
 			// 
-			this.SubmitButton.Location = new System.Drawing.Point(183, 11);
+			this.SubmitButton.Location = new System.Drawing.Point(261, 18);
+			this.SubmitButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.SubmitButton.Name = "SubmitButton";
-			this.SubmitButton.Size = new System.Drawing.Size(75, 23);
+			this.SubmitButton.Size = new System.Drawing.Size(107, 38);
 			this.SubmitButton.TabIndex = 1;
 			this.SubmitButton.Text = "Submit";
 			this.SubmitButton.UseVisualStyleBackColor = true;
@@ -52,12 +54,13 @@ partial class EnterHotkeyForm : Form
 			// 
 			// EnterHotkeyForm
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(267, 46);
+			this.ClientSize = new System.Drawing.Size(381, 77);
 			this.Controls.Add(this.SubmitButton);
 			this.Controls.Add(this.HotkeyTextBox);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.Name = "EnterHotkeyForm";
 			this.Text = "Enter Hotkey";
 			this.ResumeLayout(false);

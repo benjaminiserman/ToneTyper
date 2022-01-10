@@ -14,7 +14,7 @@ internal class Converter
 
 	private readonly InputSimulator _inputSimulator = new();
 
-	private Key? _cached = null;
+	private Key? _cached = null, _saved = null;
 
 	public bool Paused { get; set; }
 
@@ -28,6 +28,15 @@ internal class Converter
 
 		if (received is Key receivedKey)
 		{
+			if (receivedKey.IsBackspace && _saved is Key savedKey)
+			{
+				_cached = savedKey;
+				_saved = null;
+				return;
+			}
+
+			_saved = null;
+
 			if ((receivedKey.IsStart || receivedKey.IsApostrophe) && (_cached is not Key possibleU || !possibleU.IsU || !receivedKey.IsU || Program.Config.VMode != VMode.DoubleU))
 			{
 				if (receivedKey.IsV)
@@ -69,6 +78,7 @@ internal class Converter
 							}
 
 							_inputSimulator.Keyboard.TextEntry(cachedKey + receivedKey);
+							_saved = cachedKey;
 						}
 					}
 				}
@@ -77,15 +87,10 @@ internal class Converter
 			}
 		}
 	}
-
+	
 	private static Key? GetKey()
 	{
-		bool shift = GetAsyncKeyState(Keys.Shift) != 0;
-
-		if (shift)
-		{
-			throw new Exception("shift detected");
-		}
+		bool shift = GetAsyncKeyState(Keys.ShiftKey) != 0;
 
 		foreach (Keys key in _possibleKeys)
 		{

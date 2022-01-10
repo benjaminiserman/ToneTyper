@@ -32,13 +32,15 @@ internal readonly struct Key
 			Keys.NumPad4 => PossibleKey.Four,
 
 			Keys.Oem7 => PossibleKey.Apostrophe,
+			Keys.Back => PossibleKey.Backspace,
+
 			_ => PossibleKey.Other,
 		};
 
 		_shift = shift;
 	}
 
-	public bool IsStart => !IsNumber && _keyReceived is not PossibleKey.Other;
+	public bool IsStart => !IsNumber && _keyReceived is not PossibleKey.Other and not PossibleKey.Backspace;
 
 	public bool IsApostrophe => _keyReceived is PossibleKey.Apostrophe && !_shift;
 
@@ -47,6 +49,8 @@ internal readonly struct Key
 	public bool IsU => _keyReceived is PossibleKey.U;
 
 	public bool IsV => _keyReceived is PossibleKey.V;
+
+	public bool IsBackspace => _keyReceived is PossibleKey.Backspace;
 
 	public bool Shift => _shift;
 
@@ -61,7 +65,7 @@ internal readonly struct Key
 			PossibleKey.U => 'u',
 			PossibleKey.V => 'v',
 			PossibleKey.Umlaut => 'ü',
-			_ => throw new InvalidOperationException("Cannot convert KeyReceived.X or KeyReceived.Other into a char.")
+			_ => throw new InvalidOperationException($"Cannot convert key {_keyReceived} into a char.")
 		};
 
 		if (_shift) c = char.ToUpper(c);
@@ -78,7 +82,7 @@ internal readonly struct Key
 		_ => throw new Exception($"Key {_keyReceived} has no tone associated with it.")
 	};
 
-	private enum PossibleKey { A, E, I, O, U, V, Umlaut, One, Two, Three, Four, Apostrophe, Other }
+	private enum PossibleKey { A, E, I, O, U, V, Umlaut, One, Two, Three, Four, Apostrophe, Other, Backspace }
 
 	public static explicit operator char(Key key) => key.ToChar();
 

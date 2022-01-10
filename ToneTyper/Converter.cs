@@ -28,7 +28,7 @@ internal class Converter
 
 		if (received is Key receivedKey)
 		{
-			if (receivedKey.IsStart || receivedKey.IsApostrophe)
+			if ((receivedKey.IsStart || receivedKey.IsApostrophe) && (_cached is not Key possibleU || !possibleU.IsU || !receivedKey.IsU || Program.Config.VMode != VMode.DoubleU))
 			{
 				if (receivedKey.IsV)
 				{
@@ -81,6 +81,11 @@ internal class Converter
 	private static Key? GetKey()
 	{
 		bool shift = GetAsyncKeyState(Keys.Shift) != 0;
+
+		if (shift)
+		{
+			throw new Exception("shift detected");
+		}
 
 		foreach (Keys key in _possibleKeys)
 		{

@@ -37,7 +37,9 @@ internal class Converter
 
 			_saved = null;
 
-			if ((receivedKey.IsStart || receivedKey.IsApostrophe) && (_cached is not Key possibleU || !possibleU.IsU || !receivedKey.IsU || Program.Config.VMode != VMode.DoubleU))
+			if ((receivedKey.IsStart || receivedKey.IsApostrophe) &&
+				!(_cached is not null && receivedKey.IsU && (_cached.Value.IsApostrophe || _cached.Value.IsU) && Program.Config.VMode == VMode.DoubleU) &&
+				!(_cached is not null && receivedKey.IsV && _cached.Value.IsApostrophe && Program.Config.VMode == VMode.SingleV))
 			{
 				if (receivedKey.IsV)
 				{
@@ -45,6 +47,8 @@ internal class Converter
 					{
 						_cached = Key.Umlaut(receivedKey.Shift);
 
+						_inputSimulator.Keyboard.KeyPress(VirtualKeyCode.VK_U);
+						_inputSimulator.Keyboard.KeyPress(VirtualKeyCode.BACK);
 						_inputSimulator.Keyboard.KeyPress(VirtualKeyCode.BACK);
 						_inputSimulator.Keyboard.TextEntry((char)_cached);
 					}
@@ -58,7 +62,9 @@ internal class Converter
 			{
 				if (_cached is Key cachedKey)
 				{
-					if (receivedKey.IsNumber || (receivedKey.IsU && Program.Config.VMode == VMode.DoubleU))
+					if (receivedKey.IsNumber || 
+						(receivedKey.IsU && Program.Config.VMode == VMode.DoubleU) ||
+						(receivedKey.IsV && Program.Config.VMode == VMode.SingleV))
 					{
 						_inputSimulator.Keyboard.KeyPress(VirtualKeyCode.BACK);
 						_inputSimulator.Keyboard.KeyPress(VirtualKeyCode.BACK);
@@ -71,12 +77,13 @@ internal class Converter
 						{
 							if (receivedKey.IsU && cachedKey.IsU && Program.Config.VMode == VMode.DoubleU)
 							{
-								_cached = Key.Umlaut(receivedKey.Shift);
+								_cached = Key.Umlaut(cachedKey.Shift);
 
 								_inputSimulator.Keyboard.TextEntry((char)_cached);
+								_saved = cachedKey;
 								return;
 							}
-
+							
 							_inputSimulator.Keyboard.TextEntry(cachedKey + receivedKey);
 							_saved = cachedKey;
 						}

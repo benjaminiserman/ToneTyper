@@ -40,7 +40,7 @@ internal readonly struct Key
 		_shift = shift;
 	}
 
-	public bool IsStart => !IsNumber && _keyReceived is not PossibleKey.Other and not PossibleKey.Backspace && !(_keyReceived == PossibleKey.Apostrophe && _shift);
+	public bool IsStart => !IsNumber && !IsApostrophe && _keyReceived is not PossibleKey.Other and not PossibleKey.Backspace;
 
 	public bool IsApostrophe => _keyReceived is PossibleKey.Apostrophe && !_shift;
 

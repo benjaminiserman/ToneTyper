@@ -1,19 +1,21 @@
-﻿# Iksokodo
-a background service that converts keystrokes into the Esperanto X-system.
+﻿# ToneTyper
+a small program for typing pinyin tones
 
 Compatible with Windows 10 (and probably other Windows versions too, but untested. If it works on a version not listed here, please tell me!)
-If Iksokodo does not work on your Windows computer, try out the "self-contained.zip" release instead.
+If ToneTyper does not work on your Windows computer, try out the "self-contained.zip" release instead.
 
-This is a continuation of https://github.com/winggar/XSistemoKonvertilo
+ToneTyper allows you to type the tone marks for pinyin syllables For example, "Zho1ngguo2" => "Zhōngguó".
 
-To use, run Iksokodo.exe. Then:
+By default, the character 'ü' can be accessed by typing "uu". This behavior can be changed instead so that 'v' is converted into 'ü'
 
-When typing in the Esperanto X-System, keystrokes will be converted to their Esperanto equivalent. For example, typing "cx" will result in "ĉ".
+To use, run ToneTyper.exe. Then:
 
-To escape a character, type an apostrophe before the x. For example, typing "c'x" will result in "cx".
+To escape a character, type an apostrophe before the u or number. For example, typing "a'3" will result in "a3".
 
-To pause or resume Iksokodo, click its icon on the system tray, or use the hotkey "Alt + E".
+To pause or resume ToneTyper, click its icon on the system tray, or use the hotkey "Alt + P".
 
-To change the toggle hotkey, right-click the Iksokodo icon on the system tray and choose "Change Hotkey".
+To change the toggle hotkey, right-click the ToneTyper icon on the system tray and choose "Change Hotkey".
 
-To exit Iksokodo, right-click its icon on the system tray and choose "Exit".
+To change the Ü mode, right-click the ToneTyper icon on the system tray and choose "Toggle Ü Mode".
+
+To exit ToneTyper, right-click its icon on the system tray and choose "Exit".

@@ -72,6 +72,12 @@ internal class Converter
 						if (cachedKey.IsApostrophe) // a'3 => a3
 						{
 							_inputSimulator.Keyboard.TextEntry((char)receivedKey);
+
+							if (receivedKey.IsU)
+							{
+								_cached = receivedKey;
+								return;
+							}
 						}
 						else if (cachedKey.IsStart) // a3 => ǎ
 						{
@@ -101,7 +107,7 @@ internal class Converter
 
 		foreach (Keys key in _possibleKeys)
 		{
-			if (GetAsyncKeyState(key) == -32767) // -32767 == 0b10000000_00000001 => key is down and was pressed since last query
+			if (key is not Keys.ShiftKey and not Keys.LShiftKey and not Keys.RShiftKey and not Keys.Shift && GetAsyncKeyState(key) == -32767) // -32767 == 0b10000000_00000001 => key is down and was pressed since last query
 			{
 				return new Key(key, shift);
 			}

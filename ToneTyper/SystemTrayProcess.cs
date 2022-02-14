@@ -122,7 +122,7 @@ internal class SystemTrayProcess : ApplicationContext
 			_ => throw new NotImplementedException()
 		};
 
-		_vModeButton.Text = GetVModeString; 
+		_vModeButton.Text = GetVModeString;
 
 		Program.SaveConfig();
 	}

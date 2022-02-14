@@ -62,7 +62,7 @@ internal class Converter
 			{
 				if (_cached is Key cachedKey)
 				{
-					if (receivedKey.IsNumber || 
+					if (receivedKey.IsNumber ||
 						(receivedKey.IsU && Program.Config.VMode == VMode.DoubleU) ||
 						(receivedKey.IsV && Program.Config.VMode == VMode.SingleV))
 					{
@@ -83,7 +83,7 @@ internal class Converter
 								_saved = cachedKey;
 								return;
 							}
-							
+
 							_inputSimulator.Keyboard.TextEntry(cachedKey + receivedKey);
 							_saved = cachedKey;
 						}
@@ -94,7 +94,7 @@ internal class Converter
 			}
 		}
 	}
-	
+
 	private static Key? GetKey()
 	{
 		bool shift = GetAsyncKeyState(Keys.ShiftKey) != 0;
